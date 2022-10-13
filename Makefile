@@ -1,16 +1,20 @@
-main: main.o funcs.o
-	g++ -o main main.o funcs.o
+main: main.o caesar.o
+	g++ -o main -std=c++11 main.o caesar.o
 
-tests: tests.o funcs.o
-	g++ -o tests tests.o funcs.o
+tests: tests.o caesar.o
+	g++ -o tests -std=c++11 tests.o caesar.o
 
+test-ascii: test-ascii.o
+	g++ -o test-ascii -std=c++11 test-ascii.o
 
+test-ascii.o: test-ascii.cpp
+	g++ -c -std=c++11 test-ascii.cpp
 
-funcs.o: funcs.cpp funcs.h
-
-main.o: main.cpp funcs.h
-
-tests.o: tests.cpp doctest.h funcs.h
-
+caesar.o: caesar.cpp caesar.h
+	g++ -c -std=c++11 caesar.cpp
+main.o: main.cpp caesar.h
+	g++ -c -std=c++11 main.cpp
+tests.o: tests.cpp doctest.h caesar.h
+	g++ -c -std=c++11 tests.cpp
 clean:
-	rm -f main.o funcs.o tests.o
+	rm -f main.o caesar.o tests.o main tests
