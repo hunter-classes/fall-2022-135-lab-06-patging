@@ -89,6 +89,15 @@ TEST_CASE("Tests for encryptCaesar(string, int);") {
 // test for char encryptVigenere(char c, int rshift)
 TEST_CASE("Tests for encryptVigenere(string, string) in vigenere.h") { 
 	CHECK(encryptVigenere("Hello, World!", "cake") == "Jevpq, Wyvnd!");
-	CHECK(decryptCaesar("Rovvy, Gybvn!", 10) == "Hello, World!");
+}
+
+// test for char decryptVigenere(char c, int rshift)
+TEST_CASE("Tests for decryptVigenere(string, int) in decrypt.h") { 
 	CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
+
+}
+
+// test for char decryptCaesar(char c, int rshift)
+TEST_CASE("Tests for decryptCaesar(string, int) in decrypt.h") { 
+	CHECK(decryptCaesar("Rovvy, Gybvn!", 10) == "Hello, World!");
 }

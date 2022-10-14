@@ -1,8 +1,8 @@
 main: main.o caesar.o
 	g++ -o main -std=c++11 main.o caesar.o
 
-tests: tests.o caesar.o vigenere.o
-	g++ -o tests -std=c++11 tests.o caesar.o vigenere.o
+tests: tests.o caesar.o vigenere.o decrypt.o
+	g++ -o tests -std=c++11 tests.o caesar.o vigenere.o decrypt.o
 
 test-ascii: test-ascii.o
 	g++ -o test-ascii -std=c++11 test-ascii.o
@@ -13,7 +13,7 @@ vigenere.o: vigenere.cpp vigenere.h caesar.cpp caesar.h
 test-ascii.o: test-ascii.cpp
 	g++ -c -std=c++11 test-ascii.cpp
 
-decrypt.o: decrypt.cpp caesar.cpp vigenere.cpp
+decrypt.o: decrypt.cpp caesar.cpp vigenere.cpp decrypt.h vigenere.h caesar.h
 	g++ -c -std=c++11 decrypt.cpp caesar.cpp vigenere.cpp
 
 caesar.o: caesar.cpp caesar.h

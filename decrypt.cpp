@@ -70,3 +70,11 @@ std::string decryptVigenere(std::string ciphertext, std::string keyword) {
 
 	return return_string;
 }
+/*
+int main() {
+
+	std::cout << decryptCaesar("Rovvy, Gybvn!", 10);
+	std::cout << decryptVigenere("Jevpq, Wyvnd!", "cake");
+
+	return 0;
+} */
