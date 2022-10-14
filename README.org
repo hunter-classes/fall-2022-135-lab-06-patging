@@ -6,7 +6,7 @@
 
 * GitHub username: patging
 
-* Notes:
+* Notes: Some of my tests testing decrypt.cpp functions do not pass due to errors I haven't been able to fix, admittedly due to my own poor time management with this assignment. I want to apologize for that. 
 
 
 

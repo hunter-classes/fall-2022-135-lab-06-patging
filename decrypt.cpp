@@ -4,7 +4,7 @@
 #include "vigenere.h"
 #include "decrypt.h"
 #include "caesar.h"
-
+#include <cstdlib>
 char leftShiftChar(char c, int lshift) {
 	// returns a shifted letter char by rlshift
 
@@ -12,7 +12,7 @@ char leftShiftChar(char c, int lshift) {
 		if ( 65 <= c  && c <= 90) { // ascii range for capital letters
 			if (65 > c - lshift) {
 				return 90 - (65 - (c-lshift +1) );
-			} 
+			}  // distance below 65 is taken below 90 instead
 			return c - lshift;
 
 		} else if (97 <= c && c <= 122) { // ascii range for lowercase letters
