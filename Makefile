@@ -13,6 +13,9 @@ vigenere.o: vigenere.cpp vigenere.h caesar.cpp caesar.h
 test-ascii.o: test-ascii.cpp
 	g++ -c -std=c++11 test-ascii.cpp
 
+decrypt.o: decrypt.cpp caesar.cpp vigenere.cpp
+	g++ -c -std=c++11 decrypt.cpp caesar.cpp vigenere.cpp
+
 caesar.o: caesar.cpp caesar.h
 	g++ -c -std=c++11 caesar.cpp
 main.o: main.cpp caesar.h

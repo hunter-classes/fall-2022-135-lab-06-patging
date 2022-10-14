@@ -5,26 +5,22 @@
 #include "decrypt.h"
 #include "caesar.h"
 
-int get_place_in_alphabet(char c) {
-	// tells what number the letter is of the alphabet. returns -1 if n/a
-
-	if ( 65 <= c  && c <= 90) { // ascii range for capital letters
-		return c - 64;
-	} else if (97 <= c && c <= 122) { // ascii range for lowercase letters
-			return c - 96;
-	}
-	return c; // this char is not alphabetical
-}
 char leftShiftChar(char c, int lshift) {
 	// returns a shifted letter char by rlshift
 
 	if ( std::isalpha(c) ) {
 		if ( 65 <= c  && c <= 90) { // ascii range for capital letters
+			if (65 > c - lshift) {
+				return 90 - (65 - (c-lshift +1) );
+			} 
+			return c - lshift;
 
-			return (char) (((c - lshift) % 26 ) + 65);
 		} else if (97 <= c && c <= 122) { // ascii range for lowercase letters
 
-			return (char) (((c - lshift) % 26 ) + 97);
+				if (97 > c - lshift) {
+					return 122 - ( 97 - (c - lshift +1));
+				} 
+				return c - lshift;
 		}
 		/* 
 		Adding the new shift, removing 65 (or 97) b/c that's the min ascii for a letter
@@ -43,30 +39,12 @@ std::string decryptCaesar(std::string ciphertext, int rshift) {
 		c = ciphertext[i];
 
 		if(std::isalpha(c)) {
-			c = leftShiftChar(c, -1 * rshift);
+			c = leftShiftChar(c, rshift);
 		}
 		return_string = return_string + c;
 	}
 
 	return return_string;
-}
-
-char shiftChar(char c, int rshift) {
-	// returns a shifted letter char by rshift
-
-	if ( std::isalpha(c) ) {
-		if ( 65 <= c  && c <= 90) { // ascii range for capital letters
-			return (char) (((c + rshift - 65) % 26 ) + 65);
-		} else if (97 <= c && c <= 122) { // ascii range for lowercase letters
-			return (char) (((c + rshift - 97) % 26 ) + 97);
-		}
-		/* 
-		Adding the new shift, removing 65 (or 97) b/c that's the min ascii for a letter
-		applying modulo of 25 b/c it must be in range [n, n+25] to be a letter.
-		Therefore, this will wrap the shift if it's above n+25 back into n.
-		*/
-	}
-	return c;
 }
 
 
@@ -91,12 +69,4 @@ std::string decryptVigenere(std::string ciphertext, std::string keyword) {
 	}
 
 	return return_string;
-}
-
-int main() {
-
-	std::cout << decryptCaesar("Rovvy, Gybvn!", 10);
-	std::cout << decryptVigenere("Jevpq, Wyvnd!", "cake");
-
-	return 0;
 }
