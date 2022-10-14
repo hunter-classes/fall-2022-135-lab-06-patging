@@ -1,10 +1,10 @@
-main: main.o caesar.o
-	g++ -o main -std=c++11 main.o caesar.o
+main: main.o caesar.o vigenere.o decrypt.o doctest.h
+	g++ -o main -std=c++11 main.o caesar.o vigenere.o decrypt.o
 
-tests: tests.o caesar.o vigenere.o decrypt.o
+tests: tests.o caesar.o vigenere.o decrypt.o doctest.h
 	g++ -o tests -std=c++11 tests.o caesar.o vigenere.o decrypt.o
 
-test-ascii: test-ascii.o
+test-ascii: test-ascii.o 
 	g++ -o test-ascii -std=c++11 test-ascii.o
 
 vigenere.o: vigenere.cpp vigenere.h caesar.cpp caesar.h
