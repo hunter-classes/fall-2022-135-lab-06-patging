@@ -88,16 +88,62 @@ TEST_CASE("Tests for encryptCaesar(string, int);") {
 
 // test for char encryptVigenere(char c, int rshift)
 TEST_CASE("Tests for encryptVigenere(string, string) in vigenere.h") { 
+
 	CHECK(encryptVigenere("Hello, World!", "cake") == "Jevpq, Wyvnd!");
+	CHECK(encryptVigenere("Sample", "cake") == "Jevpq, Wyvnd!");
+	CHECK(encryptVigenere("Hello, World!", "cake") == "Jevpq, Wyvnd!");
+	CHECK(encryptVigenere("Hello, World!", "cake") == "Jevpq, Wyvnd!");
+	CHECK(encryptVigenere("Hello, World!", "cake") == "Jevpq, Wyvnd!");
+
 }
 
 // test for char decryptVigenere(char c, int rshift)
 TEST_CASE("Tests for decryptVigenere(string, int) in decrypt.h") { 
+	CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
+	CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
+	CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
+	CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
 	CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
 
 }
 
 // test for char decryptCaesar(char c, int rshift)
 TEST_CASE("Tests for decryptCaesar(string, int) in decrypt.h") { 
-	CHECK(decryptCaesar("Rovvy, Gybvn!", 10) == "Hello, World!");
+	// testing cases where no shift
+	CHECK(decryptCaesar("hello",0) == "hello");
+	CHECK(decryptCaesar("computer science", 0) == "computer science");
+	CHECK(decryptCaesar("",0) == "");
+	CHECK(decryptCaesar("test_case",0) == "test_case");
+
+	// normal cases no punctuation, same case
+	CHECK(decryptCaesar("sdwulfn", 3) == "patrick");
+	CHECK(decryptCaesar("SDWULFN", 3) == "PATRICK");
+	CHECK(decryptCaesar("mywzedobcmsoxmoc",10) == "computersciences");
+	CHECK(decryptCaesar("MYWZEDOBCMSOXMOC",10) == "COMPUTERSCIENCES");
+	CHECK(decryptCaesar("zdqznkxg", 28) == "xboxlive");
+	CHECK(decryptCaesar("ZDQZNKXG", 28) == "XBOXLIVE");
+	CHECK(decryptCaesar("coconut", 260) == "coconut");
+	CHECK(decryptCaesar("COCONUT", 260) == "COCONUT");
+
+	//no punctuation, differing cases
+
+	CHECK(decryptCaesar("LVKRlvkr", 10) == "BLAHblah");
+	CHECK(decryptCaesar("lvkrLVKR", 10) == "blahBLAH");
+	CHECK(decryptCaesar("BcDeFgHi", 27) == "AbCdEfGh");
+	CHECK(decryptCaesar("bCdEfGhI", 27) == "aBcDeFgH");
+
+	// cases regarding spaces
+
+	CHECK(decryptCaesar("Ipm Qerrmrk", 30) == "Eli Manning");
+	CHECK(decryptCaesar("Nzzbavhz Pneoba Qvbkvq", 13) == "Ammonium Carbon Dioxide");
+	CHECK(decryptCaesar(" ", 199) == " ");
+	CHECK(decryptCaesar(" ", 2033) == " ");
+
+	// punctiation included cases or anything outside of range
+
+	CHECK(decryptCaesar("Xibzqks!", 34) == "Patrick!");
+	CHECK(decryptCaesar("yawoan_Jankj!", 22) == "ceaser_Neron!");
+	CHECK(decryptCaesar("Mlww&Qlww", 11) == "Ball&Fall");
+	CHECK(decryptCaesar("!!!111", 10000) == "!!!111");
+	CHECK(decryptCaesar("119", 119) == "119");
 }
