@@ -9,22 +9,6 @@ funcs.cpp
 #include "caesar.h"
 #include <cctype>
 
-
-void test_ascii(std::string s) {
-	/* 
-		For each character in the string, it will print the 
-		character and the ascii for that character
-	*/
-
-	char c;
-	for(int i = 0; i < s.length(); i++) {
-		// iterating through each character
-		c = s[i];
-		std::cout << c << " " << (int) c << "\n";
-	}
-
-}
-
 char shiftChar(char c, int rshift) {
 	// returns a shifted letter char by rshift
 
@@ -52,11 +36,4 @@ std::string encryptCaesar(std::string plaintext, int rshift) {
 	}
 
 	return return_string;
-}
-
-int main() {
-
-	std::cout << encryptCaesar("Way to Go!", 5);
-
-	return 0;
 }

@@ -1,11 +1,14 @@
 main: main.o caesar.o
 	g++ -o main -std=c++11 main.o caesar.o
 
-tests: tests.o caesar.o
-	g++ -o tests -std=c++11 tests.o caesar.o
+tests: tests.o caesar.o vigenere.o
+	g++ -o tests -std=c++11 tests.o caesar.o vigenere.o
 
 test-ascii: test-ascii.o
 	g++ -o test-ascii -std=c++11 test-ascii.o
+
+vigenere.o: vigenere.cpp vigenere.h caesar.cpp caesar.h
+	g++ -c -std=c++11 vigenere.cpp caesar.cpp
 
 test-ascii.o: test-ascii.cpp
 	g++ -c -std=c++11 test-ascii.cpp
@@ -17,4 +20,4 @@ main.o: main.cpp caesar.h
 tests.o: tests.cpp doctest.h caesar.h
 	g++ -c -std=c++11 tests.cpp
 clean:
-	rm -f main.o caesar.o tests.o main tests
+	rm -f main.o caesar.o tests.o main tests test-ascii
