@@ -9,6 +9,7 @@ tests.cpp
 #include "doctest.h"
 #include "caesar.h"
 #include "vigenere.h"
+#include "decrypt.h"
 
 // test for char shiftChar(char c, int rshift)
 TEST_CASE("Tests for shiftChar(char, int) in caesar.h") {
@@ -88,4 +89,6 @@ TEST_CASE("Tests for encryptCaesar(string, int);") {
 // test for char encryptVigenere(char c, int rshift)
 TEST_CASE("Tests for encryptVigenere(string, string) in vigenere.h") { 
 	CHECK(encryptVigenere("Hello, World!", "cake") == "Jevpq, Wyvnd!");
+	CHECK(decryptCaesar("Rovvy, Gybvn!", 10) == "Hello, World!");
+	CHECK(decryptVigenere("Jevpq, Wyvnd!", "cake") == "Hello, World!");
 }
